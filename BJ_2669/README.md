@@ -12,9 +12,7 @@ https://www.acmicpc.net/problem/2669
 
 이 직사각형들이 차지하는 면적을 구하는 프로그램을 작성하시오.
 
-![BJ_2669](C:/Users/정석호/Desktop/BJ_2669.PNG)
-
- 
+![BJ_2669](https://user-images.githubusercontent.com/97646788/156356435-89076584-c051-48b5-9745-2e0d93d602e1.PNG)
 
 ### INPUT
 
