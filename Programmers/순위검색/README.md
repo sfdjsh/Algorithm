@@ -129,12 +129,12 @@ def solution(info, query):
         info_score = t[-1]	# 점수
         
         for i in range(5):
-            for c in combinations(key, i):	# 각 info들의 모든 조합
+            for c in combinations(info_key, i):	# 각 info들의 모든 조합
                 tmp = ''.join(c)
                 if tmp in info_dict:
-                    info_dict[tmp].append(int(score))
+                    info_dict[tmp].append(int(info_score))
                 else:
-                    info_dict[tmp] = [int(score)]
+                    info_dict[tmp] = [int(info_score)]
         
     for i in info_dict:
         info_dict[i].sort()			# 이진 탐색을 하기 위해 점수들을 오름차순 정렬
