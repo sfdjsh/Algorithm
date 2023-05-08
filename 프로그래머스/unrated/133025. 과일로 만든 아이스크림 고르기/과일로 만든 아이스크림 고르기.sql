@@ -1,0 +1,10 @@
+-- 코드를 입력하세요
+SELECT F.FLAVOR
+FROM FIRST_HALF F # 출하 번호, 아이스크림 맛, 총 주문량
+JOIN ICECREAM_INFO I # 아이스크림 맛, 성분 타입
+ON F.FLAVOR = I.FLAVOR
+WHERE F.TOTAL_ORDER > 3000 AND I.INGREDIENT_TYPE = 'fruit_based'
+
+# SELECT *
+# FROM ICECREAM_INFO
+
