@@ -1,21 +1,22 @@
 function solution(s, n) {
     var answer = '';
     
-    let upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    let lower = 'abcdefghijklmnopqrstuvwxyz'
-        
-    for (let i = 0; i < s.length; i++) {
-        if (s[i] === ' ') {
-            answer += ' ';
-        } else {
-            const upLow = upper.includes(s[i]) ? upper : lower;
-            let idx = upLow.indexOf(s[i]) + n;
-            if (idx >= upLow.length) {
-                idx -= upLow.length;
+    for (let i = 0; i < s.length; i ++) {
+        let e_idx = s[i].charCodeAt();
+        if (e_idx >= 65 && e_idx <= 90) {
+            e_idx += n;
+            if (e_idx > 90) {
+                e_idx -= 26;
             }
-            
-            answer += upLow[idx];            
+        } else if (e_idx >= 97 && e_idx <= 122) {
+            e_idx += n;
+            if (e_idx > 122) {
+                e_idx -= 26;
+            }
         }
+
+        answer += String.fromCharCode(e_idx);
+        
     }
     
     return answer;
