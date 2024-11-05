@@ -2,7 +2,6 @@ function solution(name, yearning, photo) {
     var answer = [];
     
     const scoreMap = new Map();
-    
     for (let i = 0; i < name.length; i++) {
         scoreMap.set(name[i], yearning[i])
     }
@@ -16,7 +15,6 @@ function solution(name, yearning, photo) {
         }
         answer.push(sum_score)
     }    
-    
     
     return answer;
 }
