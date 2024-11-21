@@ -1,12 +1,7 @@
 function solution(n) {    
     n = String(n);
-    lstN = [ ...n ];
+    const lst_n = [ ...n ];
+    lst_n.sort().reverse();    
     
-    lstN = lstN.sort((a, b) => {
-        return b - a
-    })
-    
-    var answer = Number(lstN.join(''))
-    
-    return answer;
+    return Number(lst_n.join(''));
 }
