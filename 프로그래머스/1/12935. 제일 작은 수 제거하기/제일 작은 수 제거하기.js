@@ -1,9 +1,6 @@
 function solution(arr) {
+    let min_num = Math.min(...arr)
+    let answer = arr.filter(e => e !== min_num)
         
-    const minN = Math.min.apply(null, arr);
-    arr = arr.filter((num) => {
-        return num > minN
-    })
-    
-    return (arr.length === 0) ? [-1] : arr
+    return (answer.length === 0) ? [-1] : answer
 }
