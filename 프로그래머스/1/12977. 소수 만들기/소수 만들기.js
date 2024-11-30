@@ -6,21 +6,18 @@ function solution(nums) {
             for (let k = j + 1; k < nums.length; k++) {
                 let num = nums[i] + nums[j] + nums[k];
                 
-                flag = true;
-                for (let n = 2; n < parseInt(num**(1/2)) + 1; n++) {
+                // 소수 판별                 
+                let flag = true;
+                for (let n = 2; n <= num**(1/2); n++) {
                     if (num % n == 0) {
                         flag = false;
                         break
                     }
                 }
-                
-                if (flag) {
-                    answer++;
-                }
+                if (flag) answer += 1;
             }
         }
     }
-    
     
     return answer;
 }
