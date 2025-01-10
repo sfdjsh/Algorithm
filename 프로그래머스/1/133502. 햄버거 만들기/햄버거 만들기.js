@@ -11,7 +11,7 @@ function solution(ingredient) {
             if (!order_filter) {
                 ingredient.splice(idx, 4);
                 answer++;
-                idx = idx < 4 ? 0 : idx - 4
+                idx = idx < 4 ? 0 : idx - 2
             } else idx++;  
         }
     }
