@@ -1,38 +1,26 @@
 function solution(friends, gifts) {
-  const len = friends.length;
-  const giftCount = Array.from({ length: len }, () => Array(len).fill(0));
-  const giftScore = new Map();
-  const nextMonth = Array(len).fill(0);
-
-  friends.forEach(friend => giftScore.set(friend, 0));
-    console.log(giftScore)
+    const len = friends.length;
+    const answer = Array(len).fill(0);
+    const giveGift = Array.from({length : len}, () => Array(len).fill(0));
+    const giftScore = Object.fromEntries(friends.map(name => [name, 0]));
     
-  for (const gift of gifts) {
-    const [from, to] = gift.split(' ');
-    giftCount[friends.indexOf(from)][friends.indexOf(to)]++;
-
-    giftScore.set(from, giftScore.get(from) + 1);
-    giftScore.set(to, giftScore.get(to) - 1);
-  }
+    gifts.map(gift => {
+        const [give, take] = gift.split(' ');
+        giveGift[friends.indexOf(give)][friends.indexOf(take)]++;
+        giftScore[give]++;
+        giftScore[take]--;
+    })
     
-    console.log(giftCount)
-    console.log(giftScore)
-
-  for (let i = 0; i < len; i++) {
-    for (let j = i + 1; j < len; j++) {
-      if (giftCount[i][j] > giftCount[j][i]) nextMonth[i]++;
-      else if (giftCount[i][j] < giftCount[j][i]) nextMonth[j]++;
-      else {
-        if (giftScore.get(friends[i]) > giftScore.get(friends[j])) {
-            console.log(giftScore.get(friends[i]))
-            console.log(giftScore.get(friends[j]))
-            nextMonth[i]++;
+    for (let i = 0; i < len; i++) {
+        for (let j = i + 1; j < len; j++) {
+            if (giveGift[i][j] < giveGift[j][i]) answer[j]++;
+            else if (giveGift[j][i] < giveGift[i][j]) answer[i]++;
+            else {
+                if (giftScore[friends[i]] > giftScore[friends[j]]) answer[i]++;
+                else if (giftScore[friends[i]] < giftScore[friends[j]]) answer[j]++;
+            }
         }
-        else if (giftScore.get(friends[i]) < giftScore.get(friends[j]))
-          nextMonth[j]++;
-      }
     }
-  }
-
-  return Math.max(...nextMonth);
+        
+    return Math.max(...answer)
 }
