@@ -1,39 +1,30 @@
 function solution(video_len, pos, op_start, op_end, commands) {
-    var answer = '';
     
     function timeAmount(time) {
-        var [hour, minute] = time.split(':')
-        var amount = Number(hour) * 60 + Number(minute)
+        var [minute, second] = time.split(':')
+        var amount = Number(minute) * 60 + Number(second)
         return amount
     }
     
-    var pos_amount = timeAmount(pos)
-    var os_amount = timeAmount(op_start)
-    var oe_amount = timeAmount(op_end)
-    var video_amount = timeAmount(video_len)
+    var posAmount = timeAmount(pos);
+    var osAmount = timeAmount(op_start);
+    var oeAmount = timeAmount(op_end);
+    var videoAmount = timeAmount(video_len);
         
     for (command of commands) {
+        if (posAmount <= oeAmount && posAmount >= osAmount) posAmount = oeAmount;
         
-        if (pos_amount < oe_amount && pos_amount > os_amount) pos_amount = oe_amount
-        
-        if (command === "next") {
-            pos_amount += 10
-        } else if (command === "prev") {
-            pos_amount -= 10
-        }
+        if (command === "next") posAmount += 10;
+        else posAmount -= 10;
                 
-        if (pos_amount < 0) {
-            pos_amount = 0
-        } else if (pos_amount > video_amount) {
-            pos_amount = video_amount
-        }
+        if (posAmount < 0) posAmount = 0;
+        else if (posAmount > videoAmount) posAmount = videoAmount;
         
-        if (pos_amount <= oe_amount && pos_amount >= os_amount) pos_amount = oe_amount
-        
+        if (posAmount <= oeAmount && posAmount >= osAmount) posAmount = oeAmount; 
     }
     
-    var result_hour = parseInt(pos_amount / 60)
-    var result_minute = pos_amount % 60
+    var resultMinute = parseInt(posAmount / 60);
+    var resultSecond = posAmount % 60;
     
-    return String(result_hour).padStart(2, "0") + ":" + String(result_minute).padStart(2, "0");
+    return String(resultMinute).padStart(2, "0") + ":" + String(resultSecond).padStart(2, "0");
 }
